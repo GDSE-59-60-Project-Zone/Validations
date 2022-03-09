@@ -59,10 +59,25 @@ public class CustomerFormController implements Initializable {
     }
 
     public void textFields_Key_Released(KeyEvent keyEvent) {
+        //Id Validation
         //C00-001
         //01. C00- this prefix is a must
         //02. after C00- only numbers allowed. minimum 3 (0-9) maximum 5
         //reg-ex ^(C00-)[0-9]{3,5}$
+
+        //Name Validate
+        //01. A-z any letter, Spaces are allowed
+        //02. length min 3 max 15
+
+        //Address Validate
+        //01. A-z & 0-9 , /
+        //02. Length min 4 max20
+
+        //Salary
+        //01. first number - 1-9
+        //02. second 0-9 - o or more
+        //03. (.34) if there is a decimal point there should have two numbers after the decimal point
+
 
         //get the type value
         String typedCustomerID = txtCusID.getText();
