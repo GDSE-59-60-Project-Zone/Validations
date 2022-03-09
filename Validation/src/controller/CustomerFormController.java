@@ -1,10 +1,14 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import view.tdm.CustomerTM;
 
 import java.net.URL;
@@ -25,9 +29,16 @@ public class CustomerFormController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Initializing table columns with TableTM Properties
+        tblCustomer.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("id"));
+        tblCustomer.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("name"));
+        tblCustomer.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("address"));
 
+        tblCustomer.getColumns().get(3).setCellValueFactory((param)->{
+            ImageView edit = new ImageView("/view/assets/icons/draw.png");
+            ImageView delete = new ImageView("/view/assets/icons/trash.png");
 
-
+            return new ReadOnlyObjectWrapper(new HBox(10,edit,delete));
+        });
 
 
         //set click event for the Save Comment
@@ -42,7 +53,6 @@ public class CustomerFormController implements Initializable {
             // Add to the Table
             CustomerTM customerTM = new CustomerTM(customerID, customerName, customerAddress, customerSalary);
             tblCustomer.getItems().add(customerTM);
-
 
         });
     }
