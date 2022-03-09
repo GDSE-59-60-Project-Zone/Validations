@@ -67,8 +67,9 @@ public class CustomerFormController implements Initializable {
         //get the type value
         String typedCustomerID = txtCusID.getText();
 
+        //Create a pattern and compile it to use
         Pattern idPattern = Pattern.compile("^(C00-)[0-9]{3,5}$");
-        boolean matches = idPattern.matcher(typedCustomerID).matches();
+        boolean matches = idPattern.matcher(typedCustomerID).matches(); // return boolean
         System.out.println(matches);
 
 
