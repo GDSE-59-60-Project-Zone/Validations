@@ -33,6 +33,7 @@ public class CustomerFormController implements Initializable {
         tblCustomer.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("name"));
         tblCustomer.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("address"));
 
+        //set edit and delete button from images to the table
         tblCustomer.getColumns().get(3).setCellValueFactory((param)->{
             ImageView edit = new ImageView("/view/assets/icons/draw.png");
             ImageView delete = new ImageView("/view/assets/icons/trash.png");
