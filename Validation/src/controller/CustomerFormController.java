@@ -55,7 +55,7 @@ public class CustomerFormController implements Initializable {
             tblCustomer.getItems().add(customerTM);
         });
 
-
+        btnSaveCustomer.setDisable(true);
     }
 
     public void textFields_Key_Released(KeyEvent keyEvent) {
@@ -69,15 +69,17 @@ public class CustomerFormController implements Initializable {
 
         //Create a pattern and compile it to use
         Pattern idPattern = Pattern.compile("^(C00-)[0-9]{3,5}$");
-
         boolean matches = idPattern.matcher(typedCustomerID).matches(); // return boolean
         if (matches){
             //if true - green
             txtCusID.getParent().setStyle("-fx-border-color: green");
+            btnSaveCustomer.setDisable(false);
         }else{
             //else - red
             txtCusID.getParent().setStyle("-fx-border-color: red");
+            btnSaveCustomer.setDisable(true);
         }
+
 
 
     }
