@@ -13,6 +13,7 @@ import view.tdm.CustomerTM;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 /**
  * @author : Sanu Vithanage
@@ -37,14 +38,12 @@ public class CustomerFormController implements Initializable {
         tblCustomer.getColumns().get(3).setCellValueFactory((param)->{
             ImageView edit = new ImageView("/view/assets/icons/draw.png");
             ImageView delete = new ImageView("/view/assets/icons/trash.png");
-
             return new ReadOnlyObjectWrapper(new HBox(10,edit,delete));
         });
 
 
         //set click event for the Save Comment
         btnSaveCustomer.setOnMouseClicked(event->{
-
             //Gather information from inputs
             String customerID = txtCusID.getText();
             String customerName = txtCusName.getText();
@@ -54,11 +53,25 @@ public class CustomerFormController implements Initializable {
             // Add to the Table
             CustomerTM customerTM = new CustomerTM(customerID, customerName, customerAddress, customerSalary);
             tblCustomer.getItems().add(customerTM);
-
         });
+
+
     }
 
     public void textFields_Key_Released(KeyEvent keyEvent) {
+        //C00-001
+        //01. C00- this prefix is a must
+        //02. after C00- only numbers allowed. minimum 3 (0-9) maximum 5
+        //reg-ex ^(C00-)[0-9]{3,5}$
+
+        //get the type value
+        String typedCustomerID = txtCusID.getText();
+
+        Pattern idPattern = Pattern.compile("^(C00-)[0-9]{3,5}$");
+        boolean matches = idPattern.matcher(typedCustomerID).matches();
+        System.out.println(matches);
+
+
     }
 
 
