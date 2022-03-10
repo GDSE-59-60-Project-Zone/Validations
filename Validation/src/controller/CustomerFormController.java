@@ -46,17 +46,23 @@ public class CustomerFormController implements Initializable {
         //set click event for the Save Comment
         btnSaveCustomer.setOnMouseClicked(event -> {
             //Gather information from inputs
-            String customerID = txtCusID.getText();
-            String customerName = txtCusName.getText();
-            String customerAddress = txtCusAddress.getText();
-            double customerSalary = Double.parseDouble(txtCusSalary.getText());
-
-            // Add to the Table
-            CustomerTM customerTM = new CustomerTM(customerID, customerName, customerAddress, customerSalary);
-            tblCustomer.getItems().add(customerTM);
+            saveCustomer();
         });
 
         btnSaveCustomer.setDisable(true);
+    }
+
+    private void saveCustomer() {
+        String customerID = txtCusID.getText();
+        String customerName = txtCusName.getText();
+        String customerAddress = txtCusAddress.getText();
+        double customerSalary = Double.parseDouble(txtCusSalary.getText());
+
+        // Add to the Table
+        CustomerTM customerTM = new CustomerTM(customerID, customerName, customerAddress, customerSalary);
+        tblCustomer.getItems().add(customerTM);
+
+        clearAllTexts();
     }
 
     public void textFields_Key_Released(KeyEvent keyEvent) {
@@ -74,7 +80,7 @@ public class CustomerFormController implements Initializable {
                 textField.requestFocus();// if there is a error just focus it
             } else if (response instanceof Boolean) {
                 System.out.println("Work");
-
+                saveCustomer();
             }
 
         }
@@ -159,11 +165,18 @@ public class CustomerFormController implements Initializable {
     }
 
     private void addError(TextField txtField) {
-        if (txtField.getText().length()>0) {
+        if (txtField.getText().length() > 0) {
             txtField.getParent().setStyle("-fx-border-color: red");
         }
         btnSaveCustomer.setDisable(true);
+    }
 
+    public void clearAllTexts() {
+        txtCusID.clear();
+        txtCusName.clear();
+        txtCusAddress.clear();
+        txtCusSalary.clear();
+        txtCusID.requestFocus();
     }
 
 
