@@ -159,8 +159,11 @@ public class CustomerFormController implements Initializable {
     }
 
     private void addError(TextField txtField) {
-        txtField.getParent().setStyle("-fx-border-color: red");
+        if (txtField.getText().length()>0) {
+            txtField.getParent().setStyle("-fx-border-color: red");
+        }
         btnSaveCustomer.setDisable(true);
+
     }
 
 
