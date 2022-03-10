@@ -49,13 +49,11 @@ public class ItemFormController implements Initializable {
             return new ReadOnlyObjectWrapper(new HBox(10, edit, delete));
         });
 
-
         //set click event for the Save Comment
         btnSaveItem.setOnMouseClicked(event -> {
             //Gather information from inputs
             saveItem();
         });
-
         btnSaveItem.setDisable(true);
 
 
@@ -90,7 +88,6 @@ public class ItemFormController implements Initializable {
         ValidationUtil.validate(map,btnSaveItem);
 //        TextField = error
 //        boolean // validation ok
-
         //if the enter key pressed
         if (keyEvent.getCode() == KeyCode.ENTER) {
             Object response =  ValidationUtil.validate(map,btnSaveItem);;
@@ -103,15 +100,8 @@ public class ItemFormController implements Initializable {
                 System.out.println("Work");
                 saveItem();
             }
-
         }
-
     }
-
-
-
-
-
 
 
     public void clearAllTexts() {

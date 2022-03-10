@@ -56,7 +56,6 @@ public class CustomerFormController implements Initializable {
 
         btnSaveCustomer.setDisable(true);
 
-
         //add pattern and text to the map
         //Create a pattern and compile it to use
         Pattern idPattern = Pattern.compile("^(C00-)[0-9]{3,5}$");
@@ -101,12 +100,8 @@ public class CustomerFormController implements Initializable {
                 System.out.println("Work");
                 saveCustomer();
             }
-
         }
-
     }
-
-
 
     public void clearAllTexts() {
         txtCusID.clear();
