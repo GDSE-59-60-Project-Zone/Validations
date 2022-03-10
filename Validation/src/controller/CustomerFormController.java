@@ -60,10 +60,9 @@ public class CustomerFormController implements Initializable {
     }
 
     public void textFields_Key_Released(KeyEvent keyEvent) {
-        Object validate = validate();
+        validate();
 //        TextField = error
 //        boolean // validation ok
-
 
         //if the enter key pressed
         if (keyEvent.getCode() == KeyCode.ENTER) {
@@ -142,7 +141,7 @@ public class CustomerFormController implements Initializable {
                     if (!salaryPattern.matcher(txtCusSalary.getText()).matches()) {
                         //if the input is not matching
                         addError(txtCusSalary);
-                        return txtCusAddress;
+                        return txtCusSalary;
                     } else {
                         //if the input is matching
                         removeError(txtCusSalary);
