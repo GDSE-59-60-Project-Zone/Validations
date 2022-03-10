@@ -7,6 +7,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import view.tdm.CustomerTM;
@@ -35,15 +36,15 @@ public class CustomerFormController implements Initializable {
         tblCustomer.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("address"));
 
         //set edit and delete button from images to the table
-        tblCustomer.getColumns().get(3).setCellValueFactory((param)->{
+        tblCustomer.getColumns().get(3).setCellValueFactory((param) -> {
             ImageView edit = new ImageView("/view/assets/icons/draw.png");
             ImageView delete = new ImageView("/view/assets/icons/trash.png");
-            return new ReadOnlyObjectWrapper(new HBox(10,edit,delete));
+            return new ReadOnlyObjectWrapper(new HBox(10, edit, delete));
         });
 
 
         //set click event for the Save Comment
-        btnSaveCustomer.setOnMouseClicked(event->{
+        btnSaveCustomer.setOnMouseClicked(event -> {
             //Gather information from inputs
             String customerID = txtCusID.getText();
             String customerName = txtCusName.getText();
@@ -59,10 +60,29 @@ public class CustomerFormController implements Initializable {
     }
 
     public void textFields_Key_Released(KeyEvent keyEvent) {
-        validate();
+        Object validate = validate();
+//        TextField = error
+//        boolean // validation ok
+
+
+        //if the enter key pressed
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            Object response = validate();
+
+            //if the response is a text field
+            //that means there is a error
+            if (response instanceof TextField) {
+                TextField textField = (TextField) response;
+                textField.requestFocus();
+            } else if (response instanceof Boolean) {
+                System.out.println("Work");
+            }
+
+        }
+
     }
 
-    private void validate() {
+    private Object validate() {
         //Id Validation
         //C00-001
         //01. C00- this prefix is a must
@@ -91,10 +111,11 @@ public class CustomerFormController implements Initializable {
 
 
         //get the type value
-        if (!idPattern.matcher( txtCusID.getText()).matches()){
+        if (!idPattern.matcher(txtCusID.getText()).matches()) {
             //if the input is not matching
             addError(txtCusID);
-        }else{
+            return txtCusID;
+        } else {
             //if the input is matching
             removeError(txtCusID);
 
@@ -102,7 +123,8 @@ public class CustomerFormController implements Initializable {
             if (!namePattern.matcher(txtCusName.getText()).matches()) {
                 //if the input is not matching
                 addError(txtCusName);
-            }else{
+                return txtCusName;
+            } else {
                 //if the input is matching
                 removeError(txtCusName);
 
@@ -110,8 +132,9 @@ public class CustomerFormController implements Initializable {
                 if (!addressPattern.matcher(txtCusAddress.getText()).matches()) {
                     //if the input is not matching
                     addError(txtCusAddress);
+                    return txtCusAddress;
 
-                }else{
+                } else {
                     //if the input is matching
                     removeError(txtCusAddress);
 
@@ -119,13 +142,16 @@ public class CustomerFormController implements Initializable {
                     if (!salaryPattern.matcher(txtCusSalary.getText()).matches()) {
                         //if the input is not matching
                         addError(txtCusSalary);
-                    }else{
+                        return txtCusAddress;
+                    } else {
                         //if the input is matching
                         removeError(txtCusSalary);
+
                     }
                 }
             }
         }
+        return true;
     }
 
     private void removeError(TextField txtField) {
