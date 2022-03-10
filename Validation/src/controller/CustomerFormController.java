@@ -177,6 +177,14 @@ public class CustomerFormController implements Initializable {
         txtCusAddress.clear();
         txtCusSalary.clear();
         txtCusID.requestFocus();
+        setBorders(txtCusID,txtCusName,txtCusAddress,txtCusSalary);
+    }
+
+    //reset border colors to default color
+    public void setBorders(TextField... textFields){
+        for (TextField textField : textFields) {
+            textField.getParent().setStyle("-fx-border-color: rgba(76, 73, 73, 0.83)");
+        }
     }
 
 
