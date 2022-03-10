@@ -67,14 +67,14 @@ public class CustomerFormController implements Initializable {
         //if the enter key pressed
         if (keyEvent.getCode() == KeyCode.ENTER) {
             Object response = validate();
-
             //if the response is a text field
             //that means there is a error
             if (response instanceof TextField) {
                 TextField textField = (TextField) response;
-                textField.requestFocus();
+                textField.requestFocus();// if there is a error just focus it
             } else if (response instanceof Boolean) {
                 System.out.println("Work");
+
             }
 
         }
