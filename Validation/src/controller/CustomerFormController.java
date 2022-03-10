@@ -114,7 +114,6 @@ public class CustomerFormController implements Initializable {
                 return key;
             }
             removeError(key);
-
         }
         return true;
     }

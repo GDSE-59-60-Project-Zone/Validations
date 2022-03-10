@@ -1,17 +1,15 @@
-package controller;
-
 import java.util.HashMap;
 
 /**
  * @author : Sanu Vithanage
  * @since : 0.1.0
  **/
-public class Demo {
+public class HashMapDemo {
     public static void main(String[] args) {
 
         //Usage of Hash Map
 
-        HashMap<String, Integer> map = new HashMap<>();
+        java.util.HashMap<String, Integer> map = new java.util.HashMap<>();
         //How to save a value in a map
         //First argument = Key
         //Second argument = Value
@@ -33,10 +31,6 @@ public class Demo {
             Integer value = map.get(key);
             System.out.println(key+" "+value);
         }
-
-
-
-
 
     }
 }
