@@ -9,7 +9,7 @@ public class HashMapDemo {
 
         //Usage of Hash Map
 
-        java.util.HashMap<String, Integer> map = new java.util.HashMap<>();
+        HashMap<String, Integer> map = new HashMap<>();
         //How to save a value in a map
         //First argument = Key
         //Second argument = Value
