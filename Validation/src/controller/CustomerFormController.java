@@ -203,6 +203,7 @@ public class CustomerFormController implements Initializable {
         btnSaveCustomer.setDisable(true);
     }
 
+
     public void clearAllTexts() {
         txtCusID.clear();
         txtCusName.clear();

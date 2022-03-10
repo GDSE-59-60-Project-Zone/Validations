@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class AppInitializer extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        AnchorPane root = FXMLLoader.load(this.getClass().getResource("/view/CustomerForm.fxml"));
+        AnchorPane root = FXMLLoader.load(this.getClass().getResource("/view/ItemForm.fxml"));
         Scene scene=new Scene(root);
         primaryStage.centerOnScreen();
         primaryStage.setScene(scene);
