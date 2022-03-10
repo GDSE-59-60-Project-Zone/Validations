@@ -95,15 +95,15 @@ public class CustomerFormController implements Initializable {
             //if the input is not matching
             addError(txtCusID);
         }else{
-            //if the input is maching
+            //if the input is matching
             removeError(txtCusID);
 
-            //if the customerid is ok.. then check the customer name
+            //if the Customer ID is ok.. then check the Customer Name
             if (!namePattern.matcher(txtCusName.getText()).matches()) {
                 //if the input is not matching
                 addError(txtCusName);
             }else{
-                //if the input is maching
+                //if the input is matching
                 removeError(txtCusName);
 
                 //if the Customer Name is ok.. then check the Customer Address
@@ -112,28 +112,20 @@ public class CustomerFormController implements Initializable {
                     addError(txtCusAddress);
 
                 }else{
-                    //if the input is maching
+                    //if the input is matching
                     removeError(txtCusAddress);
-
 
                     //if the Customer Address is ok.. then check the Customer Salary
                     if (!salaryPattern.matcher(txtCusSalary.getText()).matches()) {
                         //if the input is not matching
                         addError(txtCusSalary);
                     }else{
-                        //if the input is maching
+                        //if the input is matching
                         removeError(txtCusSalary);
                     }
-
                 }
-
-
-
             }
-
         }
-
-
     }
 
     private void removeError(TextField txtField) {
