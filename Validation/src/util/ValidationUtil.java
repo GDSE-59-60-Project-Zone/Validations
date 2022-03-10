@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
  * @author : Sanu Vithanage
  * @since : 0.1.0
  **/
+// Validation Util Class for all validation, you can change the logic as you want
 public class ValidationUtil {
     public static Object validate(LinkedHashMap<TextField, Pattern> map, JFXButton btn) {
         for (TextField key : map.keySet()) {
