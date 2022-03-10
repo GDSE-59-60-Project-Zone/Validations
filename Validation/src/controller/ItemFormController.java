@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
+import util.ValidationUtil;
 import view.tdm.CustomerTM;
 import view.tdm.ItemTM;
 
@@ -86,13 +87,13 @@ public class ItemFormController implements Initializable {
     }
 
     public void textFields_Key_Released(KeyEvent keyEvent) {
-        validate();
+        ValidationUtil.validate(map,btnSaveItem);
 //        TextField = error
 //        boolean // validation ok
 
         //if the enter key pressed
         if (keyEvent.getCode() == KeyCode.ENTER) {
-            Object response = validate();
+            Object response =  ValidationUtil.validate(map,btnSaveItem);;
             //if the response is a text field
             //that means there is a error
             if (response instanceof TextField) {
@@ -107,32 +108,10 @@ public class ItemFormController implements Initializable {
 
     }
 
-    private Object validate() {
-        for (TextField key : map.keySet()) {
-            Pattern pattern = map.get(key);
-            if (!pattern.matcher(key.getText()).matches()){
-                //if the input is not matching
-                addError(key);
-                return key;
-            }
-            removeError(key);
-        }
-        return true;
-    }
 
 
 
-    private void removeError(TextField txtField) {
-        txtField.getParent().setStyle("-fx-border-color: green");
-        btnSaveItem.setDisable(false);
-    }
 
-    private void addError(TextField txtField) {
-        if (txtField.getText().length() > 0) {
-            txtField.getParent().setStyle("-fx-border-color: red");
-        }
-        btnSaveItem.setDisable(true);
-    }
 
 
     public void clearAllTexts() {
